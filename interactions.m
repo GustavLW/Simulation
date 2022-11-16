@@ -14,17 +14,12 @@ if size(population{1}.neighbours,1) == 1
         if sum(size(nei)) > 0
             for j = 1:min(N,N_nei)
                 if nei(j) == 1
-                    xj = x(:,j);
-                    F(:,i) = F(:,i) + pair_potential(xi,xj,U_param);
+                    xj     = x(:,j);
+                    f      = pair_potential(xi,xj,U_param);
+                    F(:,i) = F(:,i) + f;
                 end
             end
         end
-%         if F(1,i) > 5
-%             F(1,i) = 5;
-%         end
-%         if F(2,i) > 5
-%             F(2,i) = 5;
-%         end
     end
 else
     N_nei = size(population{1}.neighbours,2);
@@ -46,5 +41,5 @@ else
                 end
             end
         end
-    end  
+    end
 end
