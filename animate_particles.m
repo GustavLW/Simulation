@@ -1,16 +1,17 @@
 clear all 
 close all
 clc
-dd      = dir('Datasets');
+dd      = dir('Datasets');  
 dd      = dd(3:end);
-nFiles  = length(dd)/2;
+nFiles  = length(dd);
 save    = 0;
-for f = 1:nFiles
-    load(['Datasets\' dd(2*f-1).name])
+for f = nFiles:nFiles
+    close all
+    load(['Datasets\' dd(f).name])
     sample_cell = observed_cells{1};
     K           = length(sample_cell.location);
     clear sample_cell
-    N           = length(observed_cells)-1;
+    N           = length(observed_cells)-2;
     ECEAT       = NaN*ones(N,2,K);
 
     for i = 1:N
@@ -23,9 +24,9 @@ for f = 1:nFiles
     
     h = figure('units','normalized','outerposition',[0 0 1 1]);
     axis tight manual; % this ensures that getframe() returns a consistent size
-    filename = strcat(dd(2*f-1).name(1:end-4),'.gif');
+    filename = strcat(dd(f).name(1:end-4),'.gif');
     %
-    skip = 10;
+    skip = 4;
     for k = skip:skip:K
         clf
         picture = squeeze(ECEAT(:,:,k));
@@ -49,4 +50,5 @@ for f = 1:nFiles
         end
         pause(0.05)
     end
+    pause(1)
 end
