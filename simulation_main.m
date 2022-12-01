@@ -4,9 +4,9 @@ clear all
 close all
 %rng(921111)
 dset = 1;
-n1m  = [1 1];   % governs initial cell number
-n2m  = [3 3];   % governs initial density
-n3m  = [2 2];   % governs strength of allee effect (1 = no proliferation)
+n1m  = [2 3];   % governs initial cell number
+n2m  = [2 2];   % governs initial density
+n3m  = [1 1];   % governs strength of allee effect (1 = no proliferation)
 n4m  = [1 1];   % governs bimodality
 n5m  = [1 1];   % governs interaction parameters
 for n1 = n1m(1):n1m(2)                              
@@ -15,18 +15,18 @@ for n1 = n1m(1):n1m(2)
             for n4 = n4m(1):n4m(2)                  
                 for n5 = n5m(1):n5m(2)              
                     dt    = 1;                      % one time unit is one hour; one time step is a second
-                    freq  = 1200;                   % frequency of observations in seconds
+                    freq  = 120.00;                 % frequency of observations in seconds
                     h     = 24;                     % total number of hours the simulation will be run
                     Kobs  = h*3600/freq;            % number of of observations
                     K     = round(h*3600);          % total number of discrete time steps [seconds]
                     scale = 50;                     % one length unit is one average cell radius. domain is scale X scale
                     N     = 32*2^n1;                % size of initial population
-                    Vmin  = 0.0005;                 % depth of potential
-                    alpha = 3;                      % steepness of potential
-                    s_bas = sqrt(4)/100;            % diffusion coefficients
+                    Vmin  = 0.00001;                % depth of potential
+                    alpha = 3.50000;                % steepness of potential
+                    s_bas = exp(-5.5);              % diffusion coefficients
                     sigma = s_bas*ones(1,N);  
                     if n4 == 2
-                        sigma(2:2:end) = s_bas/10;
+                        sigma(4:4:end) = s_bas*exp(-2);
                     end
                     l0 = [0.000 0.020 0.250]/3600;        % base division rate
                     l1 = [0.000 0.200 2.500]/3600;        % allee parameter
@@ -50,10 +50,10 @@ for n1 = n1m(1):n1m(2)
                     U_param = [Vmin alpha];
                     if n5 == 2
                         % ALTERNATIVE PARAMETRISATION - a fucking mess
-                        a1 = 0.01;
-                        a2 = 0.001;
+                        a1 = 0.004;
+                        a2 = 0.00006;
                         k1 = 10;
-                        k2 = 1;
+                        k2 = 4;
                         l1 = 0.55;
                         l2 = 1.2;
                         U_param = [k1 l1 a1 k2 l2 a2];

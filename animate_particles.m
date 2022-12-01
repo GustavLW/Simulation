@@ -5,7 +5,7 @@ dd      = dir('Datasets');
 dd      = dd(3:end);
 nFiles  = length(dd);
 save    = 0;
-for f = nFiles:nFiles
+for f = 1:nFiles
     close all
     load(['Datasets\' dd(f).name])
     sample_cell = observed_cells{1};
@@ -26,7 +26,7 @@ for f = nFiles:nFiles
     axis tight manual; % this ensures that getframe() returns a consistent size
     filename = strcat(dd(f).name(1:end-4),'.gif');
     %
-    skip = 1;
+    skip = 10;
     for k = skip:skip:K
         clf
         picture = squeeze(ECEAT(:,:,k));
