@@ -26,7 +26,7 @@ for f = 1:nFiles
     axis tight manual; % this ensures that getframe() returns a consistent size
     filename = strcat(dd(f).name(1:end-4),'.gif');
     %
-    skip = 10;
+    skip = 4;
     for k = skip:skip:K
         clf
         picture = squeeze(ECEAT(:,:,k));
