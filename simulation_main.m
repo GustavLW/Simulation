@@ -4,9 +4,9 @@ clear all
 close all
 %rng(921111)
 dset = 1;
-n1m  = [1 4];   % governs initial cell number
+n1m  = [2 3];   % governs initial cell number
 n2m  = [3 3];   % governs initial density
-n3m  = [1 1];   % governs strength of allee effect (1 = no proliferation)
+n3m  = [1 2];   % governs strength of allee effect (1 = no proliferation)
 n4m  = [1 1];   % governs bimodality
 n5m  = [1 1];   % governs interaction parameters
 for n1 = n1m(1):n1m(2)                              
@@ -15,8 +15,8 @@ for n1 = n1m(1):n1m(2)
             for n4 = n4m(1):n4m(2)                  
                 for n5 = n5m(1):n5m(2)              
                     dt    = 1;                      % one time unit is one hour; one time step is a second
-                    freq  = 300.00;                 % frequency of observations in seconds
-                    h     = 48;                     % total number of hours the simulation will be run
+                    freq  = 1200.0;                 % frequency of observations in seconds
+                    h     = 24;                     % total number of hours the simulation will be run
                     Kobs  = h*3600/freq;            % number of of observations
                     K     = round(h*3600);          % total number of discrete time steps [seconds]
                     scale = 50;                     % one length unit is one average cell radius. domain is scale X scale
