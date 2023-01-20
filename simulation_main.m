@@ -4,11 +4,11 @@ clear all
 close all
 %rng(921111)
 dset = 1;
-n1m  = [2 3];   % governs initial cell number
+n1m  = [2 4];   % governs initial cell number
 n2m  = [3 3];   % governs initial density
-n3m  = [1 2];   % governs strength of allee effect (1 = no proliferation)
+n3m  = [1 1];   % governs strength of allee effect (1 = no proliferation)
 n4m  = [1 1];   % governs bimodality
-n5m  = [1 1];   % governs interaction parameters
+n5m  = [2 2];   % governs interaction parameters
 for n1 = n1m(1):n1m(2)                              
     for n2 = n2m(1):n2m(2)                          
         for n3 = n3m(1):n3m(2)                      
@@ -28,9 +28,9 @@ for n1 = n1m(1):n1m(2)
                     if n4 == 2
                         sigma(4:4:end) = s_bas*exp(-2);
                     end
-                    l0 = [0.000 0.020 0.250]/3600;        % base division rate
-                    l1 = [0.000 0.200 2.500]/3600;        % allee parameter
-                    om = [0.000 0.003 0.600]/3600;        % base death rate
+                    l0 = [0.000 0.020 0.050]/3600;        % base division rate
+                    l1 = [0.000 0.200 0.500]/3600;        % allee parameter
+                    om = [0.000 0.005 0.070]/3600;        % base death rate
                     lambda0 = l0(n3);
                     lambda1 = l1(n3);
                     omega   = om(n3);
