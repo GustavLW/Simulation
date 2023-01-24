@@ -5,7 +5,7 @@ dd      = dir('Datasets');
 dd      = dd(3:end);
 nFiles  = length(dd);
 save    = 0;
-for f = nFiles-2:nFiles
+for f = nFiles:nFiles
     close all
     load(['Datasets\' dd(f).name])
     sample_cell = observed_cells{1};
